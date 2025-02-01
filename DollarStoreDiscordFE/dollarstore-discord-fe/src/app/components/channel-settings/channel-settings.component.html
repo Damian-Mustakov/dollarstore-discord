@@ -1,0 +1,76 @@
+<div class="channel-settings">
+    <h2>Channel Settings</h2>
+
+    <div class="section">
+        <h3>Rename Channel</h3>
+        <p><strong>Current Name:</strong> {{ channel?.name }}</p>
+        <div class="rename-container">
+            <input type="text" [(ngModel)]="newChannelName" placeholder="Enter new name" />
+            <button (click)="renameChannel()">Rename</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- <div *ngIf="channelMembers.length > 0" class="section">
+        <h3>Channel Members</h3>
+        <ul class="member-list">
+            <li *ngFor="let membership of channelMembers" class="member-item">
+                <span class="member-info">{{ membership.user.username }} - {{ membership.role }}</span>
+                <div class="buttons">
+                    <button *ngIf="canManageUsers(membership)"
+                        (click)="promoteUserToAdmin(membership.user.id)" class="promote-btn">
+                        Promote
+                    </button>
+                    <button *ngIf="canManageUsers(membership)"
+                        (click)="removeUserFromChannel(membership.user.id)" class="remove-btn">
+                        Remove
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div> -->
+
+    <div *ngIf="channelMembers.length > 0" class="section">
+        <h3>Channel Members</h3>
+        <ul class="member-list">
+            <li *ngFor="let membership of channelMembers" class="member-item">
+                <div class="member-info">
+                    <span class="username">{{ membership.user.username }}</span>
+                    <span class="role">{{ membership.role }}</span>
+                </div>
+                <div class="buttons">
+                    <button *ngIf="canManageUsers(membership)"
+                        (click)="promoteUserToAdmin(membership.user.id)" class="promote-btn">
+                        Promote
+                    </button>
+                    <button *ngIf="canManageUsers(membership)"
+                        (click)="removeUserFromChannel(membership.user.id)" class="remove-btn">
+                        Remove
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+
+    <hr>
+
+    <div class="section">
+        <h3>Add User to Channel</h3>
+        <div class="search-bar">
+            <input type="text" [(ngModel)]="userSearchQuery" placeholder="Search for a user" (input)="searchUsers()" />
+        </div>
+
+        <div *ngIf="userSearchQuery.length > 0" class="search-results">
+            <ul>
+                <li *ngFor="let user of userSearchResults" class="search-item">
+                    <span class="user-info">{{ user.username }}</span>
+                    <button (click)="addUserToChannel(user.id)" class="add-btn">Add</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <button *ngIf="isUserOwner()" class="delete-btn" (click)="confirmDeleteChannel()">Delete Channel</button>
+</div>

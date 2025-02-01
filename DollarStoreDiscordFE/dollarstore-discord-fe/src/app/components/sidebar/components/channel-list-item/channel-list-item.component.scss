@@ -1,0 +1,31 @@
+.channel-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.channel-item:hover {
+  background: var(--hover-color);
+}
+
+.channel-name {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.settings-btn:hover {
+  color: white;
+}
