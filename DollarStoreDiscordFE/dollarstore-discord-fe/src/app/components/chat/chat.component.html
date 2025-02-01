@@ -1,0 +1,29 @@
+<div class="chat-container">
+  <div *ngIf="messages; else noMessagesTemplate">
+    <div class="chat-history">
+      <div *ngFor="let message of messages" [class.current-user]="isCurrentUserMessage(message)">
+        <div *ngIf="!isCurrentUserMessage(message)" class="other-user">
+          <div class="user-message-container">
+            <div class="user-username left-align">{{ message.sender.username }}</div>
+            <div class="user-message">{{ message.textMessage }}</div>
+          </div>
+        </div>
+        <div *ngIf="isCurrentUserMessage(message)" class="current-user">
+          <div class="user-message-container">
+            <div class="user-message">{{ message.textMessage }}</div>
+            <div class="user-username right-align">{{ message.sender.username }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="message-input">
+    <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..." (keyup.enter)="sendMessage()"
+      name="newMessageInput" />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+
+  <ng-template #noMessagesTemplate>
+    <p class="no-messages">This channel has no messages yet.</p>
+  </ng-template>
+</div>

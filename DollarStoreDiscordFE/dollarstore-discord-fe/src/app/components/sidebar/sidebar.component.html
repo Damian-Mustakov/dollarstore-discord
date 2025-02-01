@@ -1,0 +1,72 @@
+<div class="user-info">
+    <span class="username">{{ user.username }}</span>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+  
+  <hr>
+  
+  <div class="channels">
+    <h3>Channels</h3>
+    <div class="create-channel">
+      <input type="text" [(ngModel)]="newChannelName" placeholder="Channel name" />
+      <button (click)="createChannel()">Create channel</button>
+    </div>
+    <div *ngIf="channels.length > 0">
+      <ul>
+        <li *ngFor="let channel of channels">
+          <app-channel-list-item 
+          [channel]="channel"
+          [hasPermission]="canUserManageChannel(channel.id)"
+          (selectChannel)="selectChannel($event)"
+          (openSettings)="openChannelSettings($event)">
+        </app-channel-list-item>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="channels.length === 0">
+      There are no available channels.
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="friends">
+    <h3>Friends</h3>
+    <div *ngIf="friends.length > 0">
+      <ul>
+        <li *ngFor="let friend of friends" (click)="selectFriend(friend.id)">
+        {{ friend.username }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="friends.length === 0">
+      There are no available friends.
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="add-friend">
+    <h3>Find Users</h3>
+    <div class="search-bar">
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery" 
+        placeholder="Search for a user" 
+        (input)="searchUsers()" 
+        name="search-bar"
+        />
+    </div>
+  
+    <div *ngIf="searchResults!.length > 0 && searchPerformed" class="search-results">
+      <div *ngFor="let user of searchResults">
+        <app-user-search-result [user]="user" (addFriend)="addFriend(user.id)">
+        </app-user-search-result>
+      </div>
+    </div>
+  
+    <div *ngIf="searchPerformed && searchResults.length === 0">
+      No users found.
+    </div>
+  </div>
+  

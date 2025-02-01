@@ -1,0 +1,71 @@
+:root {
+    --background-color: #2c2f33; /* Тъмен фон */
+    --sidebar-bg: #23272a; /* Sidebar фон */
+    --primary-color: #7289da; /* Основен акцент */
+    --hover-color: #5b6eae; /* Ховър ефект */
+    --success-color: #43b581; /* Зелен за потвърждения */
+    --danger-color: #f04747; /* Червен за предупреждения */
+    --text-color: #ffffff; /* Основен текст */
+    --secondary-text: #b9bbbe; /* По-светъл текст */
+  }
+  
+  body,
+  html {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: var(--hover-color);
+  }
+  button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: var(--hover-color);
+  }
+  
+  button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+  }
+  
